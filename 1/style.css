@@ -1,0 +1,622 @@
+@import "lesshat";
+
+body, html {
+  height: 100%;
+}
+
+svg {
+  position: absolute;
+  top: 20px;
+  left: 16px;
+  width: 120px;
+}
+
+.button {
+  position: absolute;
+  top: 11px;
+  left: 20px;
+  font-size: 18px;
+  background: rgba(255,255,255,0.86);
+  padding: 0.3em 0.6em;
+  cursor: pointer;
+  .border-radius(3px);
+  &:hover {
+    background: #fff;
+  }
+  &:after {
+    content: "";
+    position: absolute;
+    bottom: -12px;
+    left: 24%;
+    border: 6px solid transparent;
+    border-top-color: rgba(255,255,255,0.86);
+  }
+}
+
+@c_background: #fafafa;
+
+body {
+  font-size: 1.7px;
+  background: @c_background;
+}
+
+.scenery {
+  position: relative;
+  z-index: 0;
+  .trees {
+    position: absolute;
+    height: 100px;
+    width: 100vw;
+    background-image: url(http://wattenberger.com/img/forest2.png);
+    -webkit-background-size: initial;
+    background-size: initial;
+    background-position: 0 0;
+    background-repeat: repeat-x;
+    z-index: 1;
+    opacity: 1;
+  }
+  .sky {
+    position: absolute;
+    top: -20px;
+    left: 0;
+    height: 100px;
+    width: 100vw;
+    background: #CAE0D6;
+    z-index: 0;
+  }
+}
+
+#sovogs {
+  height: 400px;
+  width: 80vw;
+  margin-top: 2vh;
+  margin-left: 240px;
+}
+
+.wrapper {
+  position: relative;
+  height: 131em;
+  width: 73em;
+  float: left;
+  z-index: 100;
+}
+
+// Colors
+@white: #fff;
+@light_grey: #787878;
+@dark_grey: #5E5E5E;
+@black: #000;
+
+// Sizes
+@s_overall: 1em;
+
+@h_antennae: 8em;
+@w_antennae: 10em;
+@d_antennae: 18em;
+@d_antennae_ball: 3em;
+
+@h_head: 24em;
+@w_head: 28em;
+@s_eye: 8.5em;
+@h_eyeball: 3.4em;
+@w_eyeball: 3.9em;
+@h_mouth: 2.2em;
+@w_mouth: 20em;
+
+@h_body: 34em;
+@w_body: 34em;
+
+@h_arm: 31em;
+@w_arm: 14em;
+@t_arm: 5em;
+@d_hand: 11.6em;
+@d_hand_inner: 7.6em;
+@t_elbow: 2em;
+@h_shoulder: 14em;
+@w_shoulder: 3em;
+
+@h_leg: 30em;
+@w_leg: 5em;
+@t_knee: 2em;
+@h_foot: 7em;
+@w_foot: 15em;
+
+//Animations
+
+.keyframes(~'blink, 0% { height: 0; animation-timing-function:ease-in;  } 49% { height: 0; animation-timing-function:ease-out;  } 50% { height: 100%; animation-timing-function:ease-in; } 53% { height: 100%; animation-timing-function:ease-out; } 58% { height: 100%; animation-timing-function:ease-in; } 100% { height: 0; }');
+
+.keyframes(~'blinking, 0% { height: 0; animation-timing-function:ease-in;  } 49% { height: 0; animation-timing-function:ease-out;  } 50% { height: 0; animation-timing-function:ease-in; } 53% { height: 100%; animation-timing-function:ease-out; } 58% { height: 0; animation-timing-function:ease-in; } 100% { height: 0; }');
+
+.keyframes(~'jumping, 0% { margin-bottom: 0; animation-timing-function:ease-in;  } 49% { margin-bottom: 0; animation-timing-function:ease-out;  } 50% { margin-bottom: 4em; animation-timing-function:ease-in; } 51% { margin-bottom: 4em; animation-timing-function:ease-out; } 52% { margin-bottom: 0; animation-timing-function:ease-in; } 100% { margin-bottom: 0; }');
+
+.keyframes(~'jumpingknees, 0% { -webkit-transform: scale(1, 0.9);-moz-transform: scale(1, 0.9);-o-transform: scale(1, 0.9);-ms-transform: scale(1, 0.9);transform: scale(1, 0.9); animation-timing-function:ease-in;  } 49% { -webkit-transform: scale(1, 0.9);-moz-transform: scale(1, 0.9);-o-transform: scale(1, 0.9);-ms-transform: scale(1, 0.9);transform: scale(1, 0.9); animation-timing-function:ease-out;  } 50% { -webkit-transform: scale(1);-moz-transform: scale(1);-o-transform: scale(1);-ms-transform: scale(1);transform: scale(1); animation-timing-function:ease-in; } 51% { -webkit-transform: scale(1);-moz-transform: scale(1);-o-transform: scale(1);-ms-transform: scale(1, 0.9);transform: scale(1); animation-timing-function:ease-out; } 52% { -webkit-transform: scale(1, 0.9);-moz-transform: scale(1, 0.9);-o-transform: scale(1, 0.9);-ms-transform: scale(1, 0.9);transform: scale(1, 0.9); animation-timing-function:ease-in; } 100% { -webkit-transform: scale(1, 0.9);-moz-transform: scale(1, 0.9);-o-transform: scale(1, 0.9);-ms-transform: scale(1, 0.9);transform: scale(1, 0.9); }');
+
+
+.sovog {
+  position: absolute;
+  bottom: @h_leg;
+  display: block;
+  font-size: 1em;
+  margin-top: 0;
+  padding-left: 20em;
+  &:hover {
+    .eye .eyeball {
+      margin-left: -@w_eyeball / 2 !important;
+    }
+  }
+  .top {
+    .antennae {
+      position: absolute;
+      top: -@h_antennae;
+      left: 50%;
+      margin-left: -@d_antennae;
+      height: @d_antennae;
+      width: @d_antennae;
+      border: @d_antennae/20 solid transparent;
+      border-top-color: @black;
+      z-index: 0;
+      .border-radius(@d_antennae);
+      .rotate(45deg);
+      &.right {
+        margin-left: 0;
+        .rotate(-45deg);
+      }
+      .ball {
+        content: "";
+        position: absolute;
+        margin-top: @d_antennae_ball / 2;
+        height: @d_antennae_ball;
+        width: @d_antennae_ball;
+        background: @light_grey;
+        top: 0;
+        left: 0;
+        .border-radius(@d_antennae_ball);
+      }
+      &.right .ball {
+        left: auto;
+        right: 0;
+      }
+    }
+    .base {
+      position: absolute;
+      background: @light_grey;
+      top: -1.6em;
+      left: 50%;
+      height: 1.6em;
+      width: 13em;
+      margin-left: -13em / 2;
+      z-index: 1;
+      &:before {
+        content: "";
+        position: absolute;
+        top: -70%;
+        width: 100%;
+        height: 3em;
+        left: 0;
+        background: @light_grey;
+        .border-radius(100% 100% 0 0);
+      }
+    }
+  }
+  .head {
+    position: relative;
+    margin-top: @h_antennae + 3;
+    margin-bottom: -@h_head / 26;
+    margin-left: -@w_head / 2;
+    height: @h_head;
+    width: @w_head;
+    .transition(all 0.2s ease-out);
+    &:hover {
+      .rotate(2deg);
+    }
+    .face {
+      position: absolute;
+      left: 0;
+      top: 0;
+      background: @dark_grey;
+      height: @h_head;
+      width: @w_head;
+      z-index: 1;
+      .left-side {
+        position: absolute;
+        top: 0;
+        height: @h_head;
+        width: @w_head / 5;
+        right: -9%;
+        background: @dark_grey;
+        .border-radius(0 50% 50% 0);
+      }
+      .right-side {
+        position: absolute;
+        top: 0;
+        height: @h_head;
+        width: @w_head / 5;
+        left: -9%;
+        background: @dark_grey;
+        z-index: 0;
+        .border-radius(50% 0 0 50%);
+      }
+    }
+    .eye {
+      position: absolute;
+      height: @s_eye;
+      width: @s_eye;
+      background: @white;
+      top: @s_eye * .5;
+      left: @s_eye * .24;
+      z-index: 1;
+      overflow: hidden;
+      .border-radius(@s_eye);
+      &:hover .eyelid {
+       // .animation(blink .6s 1);
+      }
+      &.right {
+        left: auto;
+        right: @s_eye * .24;
+      }
+      .eyeball {
+        position: absolute;
+        height: @h_eyeball;
+        width: @w_eyeball;
+        background: @black;
+        left: 50%;
+        top: 50%;
+        margin-left: -@w_eyeball / 2;
+        margin-top: -@h_eyeball / 2;
+        .border-radius(@w_eyeball);
+        .transition(margin-left 0.2s ease-out);
+      }
+      .eyelid {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: @s_eye;
+        height: 0;
+        background: @light_grey;
+        z-index: 2;
+        -webkit-backface-visibility: hidden;
+        .transition(height 0.2s ease-out);
+        .animation(blinking 5.6s infinite);
+      }
+    }
+    .mouth {
+      position: absolute;
+      background: @white;
+      height: @h_mouth;
+      width: @w_mouth;
+      bottom: 5em;
+      left: 50%;
+      margin-left: -@w_mouth / 2;
+      z-index: 2;
+      .border-radius(@h_mouth / 2);
+      .transition(height 0.2s ease-out);
+      &:hover {
+        height: @h_mouth * 1.3;
+      }
+    }
+  }
+  .neck {
+    background: @light_grey;
+    height: 5em;
+    width: 17em;
+    margin-left: -17em / 2;
+  }
+  .body {
+    position: relative;
+    height: @h_body;
+    width: @w_body;
+    margin-top: -2em;
+    margin-left: -@w_body / 2;
+    .torso {
+      position: absolute;
+      top: 0;
+      left: 0;
+      background: @dark_grey;
+      height: @h_body;
+      width: @w_body;
+      z-index: 3;
+      .left-side {
+        content: "";
+        position: absolute;
+        top: 0;
+        width: @w_body / 5;
+        height: @h_body;
+        right: -9%;
+        background: @dark_grey;
+        .border-radius(0 50% 50% 0);
+      }
+      .right-side {
+        content: "";
+        position: absolute;
+        top: 0;
+        width: @w_body / 5;
+        height: @h_body;
+        left: -9%;
+        background: @dark_grey;
+        .border-radius(50% 0 0 50%);
+      }
+    }
+    .arm {
+      position: absolute;
+      height: @h_arm;
+      width: @w_arm - @t_arm;
+      top: @h_arm / 14;
+      left: -@w_arm * 1.1;
+      border-top-left-radius: @w_arm * 2 @w_arm * 3;
+      border-bottom-left-radius: @w_arm @w_arm * 1.6;
+      border: @t_arm solid transparent;
+      border-left-color: @light_grey;
+      &:after {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: -@h_arm / 6;
+        height: @h_arm / 5;
+        width: 120%;
+        background: @c_background;
+        z-index: 2;
+      }
+      .hand {
+        position: absolute;
+        bottom: -@d_hand / 2.5;
+        left: -@w_arm / 2;
+        height: @d_hand;
+        width: @d_hand;
+        background: @dark_grey;
+        z-index: 4;
+        .border-radius(@d_hand);
+        &:after {
+          content: "";
+          position: absolute;
+          top: @d_hand / 2.15;
+          left: @d_hand / 3;
+          height: @d_hand_inner;
+          width: @d_hand_inner;
+          background: @c_background;
+          .border-radius(@d_hand_inner);
+        }
+      }
+      .elbow {
+        position: absolute;
+        top: @h_arm / 4.6;
+        left: -@w_arm / 3;
+        height: @t_arm * 0.85;
+        width: @t_arm * 0.85;
+        border: @t_elbow solid @black;
+        .border-radius(@t_arm);
+      }
+      &.right {
+        left: auto;
+        right: -@w_arm * 1.1;
+        border: @t_arm solid transparent;
+        border-right-color: @light_grey;
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 0;
+        border-top-right-radius: @w_arm * 2 @w_arm * 3;
+        border-bottom-right-radius: @w_arm @w_arm * 1.6;
+        .hand {
+          left: auto;
+          right: -@w_arm / 2;
+          &:after {
+            left: auto;
+            right: @d_hand / 3;
+          }
+        }
+        .elbow {
+          left: auto;
+          right: -@w_arm / 3;
+        }
+      }
+    }
+    .shoulder {
+      position: absolute;
+      background: @black;
+      top: @h_shoulder / 27;
+      left: -@w_shoulder * 1.4;
+      height: @h_shoulder;
+      width: @w_shoulder;
+      z-index: 1;
+      .rotate(8deg);
+      &:before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -50%;
+        height: 100%;
+        width: @w_shoulder;
+        background: @black;
+        .border-radius(100% 0 0 100%);
+      }
+      &.right {
+        left: auto;
+        right: -@w_shoulder * 1.4;
+        .rotate(-8deg);
+        &:before {
+          left: auto;
+          right: -50%;
+          .border-radius(0 100% 100% 0);
+        }
+      }
+    }
+    .leg {
+      position: absolute;
+      top: @h_body;
+      left: @w_leg * 0.8;
+      height: @h_leg;
+      width: @w_leg;
+      background: @light_grey;
+      &.right {
+        left: auto;
+        right: @w_leg * 0.8;
+      }
+      .knee {
+        position: absolute;
+        top: @h_leg / 4;
+        left: -@t_knee * 0.9;
+        height: @w_leg * 0.95;
+        width: @w_leg * 0.95;
+        border: @t_knee solid @black;
+        .border-radius(@w_leg);
+      }
+      .foot {
+        position: absolute;
+        bottom: -@h_foot * 0.5;
+        height: @h_foot;
+        width: @w_foot;
+        background: @dark_grey;
+        margin-left: -(@w_foot / 2) + (@w_leg / 2);
+        .border-radius(@w_foot @w_foot 0 0);
+      }
+    }
+  }
+  &.jumping {
+    .animation(jumping 3.6s infinite);
+    .leg {
+      height: @h_leg * 1.3;
+      margin-top: -@h_leg / 5;
+      .animation(jumpingknees 3.6s infinite);
+    }
+    .knee {
+      margin-top: @h_leg / 6;
+    }
+  }
+  &.tiny {
+    font-size: 0.8em;
+  }
+  &.little {
+    font-size: 0.9em;
+  }
+  &.big {
+    font-size: 1.1em;
+  }
+  &.giant {
+    font-size: 1.2em;
+  }
+  &.meaty {
+    @w_body: 38em;
+    .body {
+      width: @w_body;
+      margin-left: -@w_body / 2;
+      .torso {
+        width: @w_body;
+      }
+    }
+  }
+  &.skinny {
+    @w_body: 29em;
+    .body {
+      width: @w_body;
+      margin-left: -@w_body / 2;
+      .torso {
+        width: @w_body;
+      }
+    }
+  }
+  &.short {
+    @h_leg: 24em;
+    bottom: @h_leg;
+    .leg {
+      height: @h_leg;
+      .knee {
+        top: @h_leg / 6;
+      }
+    }
+    &.jumping {
+      .leg {
+        height: @h_leg * 1.3;
+        margin-top: -@h_leg / 5;
+      }
+      .knee {
+        margin-top: @h_leg / 6;
+      }
+    }
+  }
+  &.happy {
+    .mouth {
+      .border-radius(0 0 @h_mouth @h_mouth);
+    }
+  }
+  &.sad {
+    .mouth {
+      .border-radius(@h_mouth @h_mouth 0 0);
+    }
+  }
+  &.angry {
+    .eyelid-two {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: -2em;
+      width: @s_eye * 1.4;
+      height: 0;
+      z-index: 3;
+      height: 3em;
+      .rotate(8deg);
+    }
+    .eye.right .eyelid-two {
+      .rotate(-8deg);
+    }
+  }
+  &.dopey {
+    .eyelid-two {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: -2em;
+      width: @s_eye * 1.4;
+      height: 0;
+      z-index: 3;
+      height: 3em;
+      .rotate(-8deg);
+    }
+    .eye.right .eyelid-two {
+      .rotate(8deg);
+    }
+  }
+  &.closed {
+    .mouth {
+      height: 1em;
+    }
+  }
+  &.wide-open-mouth {
+    .mouth {
+      height: 4em;
+    }
+  }
+  &.x-slow {
+    &, .leg, .knee {
+      .animation-duration(9s);
+    }
+    .head .eye .eyelid {
+      .animation-duration(14s);
+    }
+  }
+  &.slow {
+    &, .leg, .knee {
+      .animation-duration(6s);
+    }
+    .head .eye .eyelid {
+      .animation-duration(8s);
+    }
+  }
+  &.fast {
+    &, .leg, .knee {
+      .animation-duration(4s);
+    }
+    .head .eye .eyelid {
+      .animation-duration(3s);
+    }
+  }
+  &.x-fast {
+    &, .leg, .knee {
+      .animation-duration(2s);
+    }
+    .head .eye .eyelid {
+      .animation-duration(2s);
+    }
+  }
+}
+
+.wrapper:nth-child(odd) .sovog .head:hover {
+  .rotate(-2deg);
+}
